@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Spider-task</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="wrapper" id="w1">
+                <div class="calender grid-spl">
+
+                </div>
+
+                <div class="clock">
+                    <div class="time-cont">
+                        <div class="time flex" id="hour"></div>
+                        <div class="time-name">hours</div>
+                    </div>
+                    <div class="time-cont">
+                        <div class="time flex" id="min"></div>
+                        <div class="time-name">mins</div>
+                    </div>
+                    <div class="time-cont">
+                        <div class="time flex" id="sec"></div>
+                        <div class="time-name">secs</div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper" id="w2">
+                <div class="todo-header flex">
+                    <div class="header-title">My Schedule</div>
+                    <div class="header-icon flex" id='create'>
+                        Create new
+                        <span class="iconify" data-icon="bi:plus-circle" data-inline="false"></span>
+                    </div>
+                    <div class="header-icon flex" id='delete-all'>
+                        delete all
+                        <span class="iconify" id="delete" data-icon="ant-design:delete-outlined" data-inline="false"></span>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+            </div>
+        </div>
+
+        <script src="javascript/main.js"></script>
+    </body>
+</html>
