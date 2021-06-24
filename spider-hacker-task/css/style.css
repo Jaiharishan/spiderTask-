@@ -1,0 +1,551 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding:.25em;
+}
+
+.wrapper {
+    margin:.25em;
+    background:rgb(241, 254, 255);
+    border-radius: .5em;
+}
+
+#w1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width:90%;
+    padding:.5em 0;
+    margin:.5em auto;
+}
+
+#w2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:.5em 0;
+    width: 90%;
+    margin:.5em auto;
+}
+
+.grid-spl {
+    display: grid;
+    width:90%;
+    max-width: 525px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1.15fr 1.05fr repeat(6, 1fr);
+    height:600px;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+}
+
+
+/* =========== calender styles ============== */
+
+
+.week {
+    background: rgb(173, 252, 255);
+    font-size: 1.125rem;
+    text-transform: capitalize;
+}
+
+.date {
+    background:rgb(225, 254, 255);
+    font-size: 1.125rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.date:hover {
+    background: rgb(185, 253, 255);
+}
+
+.calender-header {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    background: rgb(126, 251, 255);
+    font-size: 2rem;
+}
+
+.calender-header.flex {
+    justify-content: space-around;
+}
+
+.calender-header button {
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor:pointer;
+}
+
+.calender-header .iconify {
+    font-size: 1.5rem;
+}
+
+/*  =================== CLOCK STYLES ==================== */
+
+
+.all-clocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ============== DIGITAL CLOCK STYLES ================ */
+
+
+.clock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:250px;
+    margin-top: 60px;
+}
+
+.time {
+    padding:0.5em .6em;
+    font-size: 1.75rem;
+    background:rgb(183, 253, 255);
+}
+
+
+.time-name {
+    background: rgb(126, 251, 255);
+    text-align: center;
+    padding:.1em 0;
+}
+
+
+/* ================== ANALOG CLOCK STYLES ================== */
+.clock-analog {
+    display: none;
+    width:225px;
+    height: 225px;
+    background: rgb(183, 253, 255);
+    border:2px solid black;
+    border-radius: 50%;
+    position: relative;
+}
+
+.num {
+    --angle: 0;
+    position: absolute;
+    width:100%;
+    height:100%;
+    text-align: center;
+    transform: rotate(var(--angle));
+}
+
+.clock-analog .num12 {--angle:0deg}
+.clock-analog .num1 {--angle:30deg}
+.clock-analog .num2 {--angle:60deg}
+.clock-analog .num3 {--angle:90deg}
+.clock-analog .num4 {--angle:120deg}
+.clock-analog .num5 {--angle:150deg}
+.clock-analog .num6 {--angle:180deg}
+.clock-analog .num7 {--angle:210deg}
+.clock-analog .num8 {--angle:240deg}
+.clock-analog .num9 {--angle:270deg}
+.clock-analog .num10 {--angle:300deg}
+.clock-analog .num11 {--angle:330deg}
+
+/* HANDS OF THE CLOCK */
+
+.clock-analog .hand {
+    --angle:0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translate(-50%) rotate(calc(var(--angle) * 1deg));
+
+    border-radius: 2px;
+    z-index: 13;
+    background: rgb(0, 0, 0);
+}
+
+
+.clock-analog::after {
+    content: '';
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width:10px;
+    height:10px;
+    background: black;
+    border-radius: 50%;
+    z-index: 33;
+}
+
+
+.clock-analog .hour-ana {
+    width:4px;
+    height: 32%;
+}
+
+.clock-analog .min-ana {
+    width:3px;
+    height: 40%;
+}
+
+.clock-analog .sec-ana {
+    width:2px;
+    height: 44%;
+    background: rgb(255, 0, 0);
+}
+
+
+/* ============= CLOCK CHOICES STYLES ============= */
+
+
+.clock-choice {
+    margin-top: 2em;
+    background: rgb(185, 253, 255);
+    border-radius: 1.2em;
+    position: relative;
+
+}
+.choice {
+    padding:0.5em 1.3em;
+    font-size: 1.125rem;
+    cursor: pointer;
+    background: transparent;
+    z-index: 5;
+}
+
+
+.choice-bg {
+    position: absolute;
+    background-color: rgb(99, 250, 255);
+    height: 100%;
+    width:50%;
+    border-radius: 1.2em;
+    left: 0;
+    transition: transform 0.3s;
+}
+
+.color-choice, .dimension-choice, .sound-choice, .time-choice {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:.6em .5em;
+    font-size: 1.25rem;
+    background: rgb(185, 253, 255);
+    border-radius: .5em;
+    
+}
+
+.color-choice input {
+    border:none;
+    outline: none;
+    margin:.5em 0;
+    background: transparent;
+    width:50%;
+}
+
+.btn {
+    padding: 0.4em 2em;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-ok {
+    background: rgb(126, 251, 255);
+    transition: background 0.2s ease;
+}
+
+
+.btn-ok:hover {
+    background: rgb(0, 247, 255);
+}
+
+/* RANGE BTN STYLES */
+input[type='range']{
+    -webkit-appearance: none;
+    outline: none;
+    margin-bottom: .5em;
+    height:10px;
+    border-radius: 4px;
+}
+
+label {
+    font-size: 1.125rem;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width:12px;
+    height:12px;
+    border-radius: 50%;
+    background: rgb(0, 247, 255);
+    cursor: pointer;
+}
+
+input[type='range']::-moz-range-thumb {
+    width:12px;
+    height:12px;
+    border-radius: 50%;
+    background: rgb(0, 247, 255);
+    cursor: pointer;
+}
+
+.btn-sound {
+    background-color: rgb(126, 251, 255);
+}
+
+.btn-set {
+    margin:.5em 0;
+    background-color: rgb(126, 251, 255);
+}
+
+input[type='time'] {
+    font-size: 1.125rem;
+    color: #000;
+    outline: none;
+    border: none;
+    background-color: rgb(225, 254, 255);
+    padding:.3em;
+    margin:.25em 0;
+}
+
+
+/* ===================== TODOS AND ALL STYLES =================== */
+
+
+.todo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:80%;
+}
+
+.header-title {
+    font-size: 2rem;
+    margin:.5em .2em;
+}
+
+.sub-header-title {
+    font-size: 1.75rem;
+    margin:.5em .2em;
+}
+
+.header-icon {
+    cursor: pointer;
+    transition: color 0.15s;
+    font-size: 1.25rem;
+}
+
+.header-icon .iconify {
+    font-size: 1.5rem;
+    margin-left: .25em;
+    
+}
+
+#save:hover {
+    color: rgb(18, 190, 18);
+}
+
+#delete-all:hover{
+    color:rgb(255, 44, 44);
+}
+
+
+.line {
+    width: 80%;
+    height: 1px;
+    background: rgb(26, 53, 54);
+    margin: 0 auto 1em;
+}
+
+
+/*  ===============  LEFT AND RIGHT COLUMN OF TODOS STYLES ============== */
+
+
+.all-todos {
+    display: flex;
+    width: 90%;
+    
+}
+
+.todos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    border: 1px solid black;
+    margin: 0 0.25em;
+    border-radius: .8em;
+}
+
+#completed {
+    border:3px solid rgb(18, 190, 18);
+}
+
+
+#completed .line{
+    background-color: rgb(18, 190, 18);
+}
+
+.todo-container {
+    display: grid;
+    grid-template-columns: .1fr .8fr .1fr;
+    width:80%;
+    padding:.5em;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(225, 254, 255);
+    margin:.5em 0;
+}
+
+.todo-date {
+    width:65px;
+    height:65px;
+    border-radius: 50%;
+    background: rgb(126, 251, 255);
+    font-size: 1.5rem;
+    outline: none;
+    word-wrap: break-word;
+}
+
+.todo-content {
+    font-size: 1.125rem;
+    padding:.6em;
+    background: rgb(211, 254, 255);
+    outline: none;
+    word-wrap: break-word;
+}
+
+.todo-content:focus {
+    background:#fff;
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.icons .iconify {
+    font-size: 1.5rem;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.icons #delete:hover {
+    color: rgb(255, 44, 44);
+}
+
+#status:hover {
+    color:rgb(18, 190, 18);
+}
+
+
+
+/* ================= MEDIA QUERIES ================== */
+
+@media (max-width:850px){
+    #w1 {
+        flex-direction: column;
+    }
+
+    .all-clocks {
+        margin: 1.5em 0;
+    } 
+
+    .all-todos {
+        width: 95%;
+    }
+}
+
+
+@media (max-width:600px) {
+    .all-todos {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .todos {
+        width: 90%;
+        margin:1em 0;
+    }
+
+    .todo-header {
+        flex-direction: column;
+        
+    }
+
+    .header-icon {
+        margin:.5em 0;
+    }
+
+    .todo-container {
+        width:90%;
+        min-width: 200px;
+    }
+}
+
+
+@media (max-width:450px) {
+
+    /* all 1.125 to 1 */
+    .week, .date, .choice, .todo-content, label {
+        font-size: 1rem;
+    }
+
+    /* 1.25 to 1.125 */
+    .color-choice, .dimension-choice, .sound-choice, .header-icon {
+        font-size: 1.125rem;
+    }
+
+    /* 1.5 to 1.25 */ 
+    .header-icon .iconify{
+        font-size: 1.25rem;
+    }
+
+    /* 1.75 to 1.5 */
+    .time, .sub-header-title {
+        font-size: 1.5rem;
+    }
+
+    /* 2 to 1.75 */
+    .header-title, .calender-header {
+        font-size: 1.75rem;
+    }
+
+    /* REDUCING THE CALENDER HEIGHT */
+    .grid-spl {
+        height:420px;
+        min-height: 300px;
+    }
+    
+    /* REDUCING ANALOG CLOCK SIZE */
+    .clock-analog {
+        width: 175px;
+        height: 175px;
+    }
+}

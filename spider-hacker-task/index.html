@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Spider Hacker Mode</title>
+
+        <!-- LINK TO CSS JAVASCRIPT AND ICONIFY -->
+        <link rel="stylesheet" href="css/style.css">
+        <script defer src="js/main.js"></script>
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="wrapper" id="w1">
+
+                <!-- CALENDER -->
+                <div class="calender grid-spl">
+                    <!-- ELEMENTS OF THE CALENDER GOES HERE -->
+                </div>
+
+
+                <!-- DIGITAL AND ANALOG CLOCK -->
+                <div class="all-clocks">
+                    <div class="clock">
+                        <div class="time-cont">
+                            <div class="time flex" id="hour"></div>
+                            <div class="time-name">hours</div>
+                        </div>
+                        <div class="time-cont">
+                            <div class="time flex" id="min"></div>
+                            <div class="time-name">mins</div>
+                        </div>
+                        <div class="time-cont">
+                            <div class="time flex" id="sec"></div>
+                            <div class="time-name">secs</div>
+                        </div>
+                    </div>
+                    <div class="clock-analog">
+                        <div class="hand hour-ana"></div>
+                        <div class="hand min-ana"></div>
+                        <div class="hand sec-ana"></div>
+    
+                        <div class="num num1">1</div>
+                        <div class="num num2">2</div>
+                        <div class="num num3">3</div>
+                        <div class="num num4">4</div>
+                        <div class="num num5">5</div>
+                        <div class="num num6">6</div>
+                        <div class="num num7">7</div>
+                        <div class="num num8">8</div>
+                        <div class="num num9">9</div>
+                        <div class="num num10">10</div>
+                        <div class="num num11">11</div>
+                        <div class="num num12">12</div>
+    
+                    </div>
+    
+                    <div class="clock-choice flex">
+                        <div class="choice-bg"></div>
+                        <div class="choice" id='digi'>Digital</div>
+                        <div class="choice" id='ana'>Analog</div>
+                    </div>
+                    <div class="time-choice">
+                        <input type="time" name="time-choice" id="time-choice" value="09:45:12">
+                        <button class="btn btn-set">change time</button>
+                    </div>
+
+                    <div class="color-choice">
+                        <label for="colors">Choose your color!</label>
+                        <input type="color" name="colors" id="colors">
+                        <button class="btn btn-ok">OK!</button>
+                    </div>
+                    <div class="dimension-choice">
+                        <label for="sec">Sec</label>
+                        <input type="range" name="range-sec" id="range-sec" min=0 max=100 value="100">
+                        <label for="min">Min</label>
+                        <input type="range" name="range-min" id="range-min" min=0 max=100 value="100">
+                        <label for="hour">Hour</label>
+                        <input type="range" name="range-hour" id="range-hour" min=0 max=100 value="100">
+                    </div>
+                    <div class="sound-choice">
+                        <button class="btn btn-sound">Mute</button>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper" id="w2">
+                <div class="todo-header">
+                    <div class="header-title">My Schedule</div>
+                    <div class="header-icon flex" id='save'>
+                        <span class="content">save</span>
+                        <span class="iconify" data-icon="codicon:save-as" data-inline="false"></span>
+                    </div>
+                    <div class="header-icon flex" id='delete-all'>
+                        delete all
+                        <span class="iconify" id="delete" data-icon="ant-design:delete-outlined" data-inline="false"></span>
+                    </div>
+                </div>
+    
+                <div class="line"></div>
+
+                <div class="all-todos">
+                    <div class="todos" id='pending'>
+                        <div class="sub-header-title">pending</div> 
+                        <div class="line"></div>
+                    </div>
+                    <div class="todos" id='completed'>
+                        <div class="sub-header-title">completed</div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+                
+    </body>
+</html>
