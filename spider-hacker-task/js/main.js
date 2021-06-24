@@ -377,7 +377,6 @@ function createToDo(elem) {
     curDate = dt.getDate();
 
     if(parseInt(todoDate.textContent) < curDate){
-        console.log('works');
         todoDate.style.background = 'rgb(255, 70, 70)';
         todoDate.style.color = 'white';
     }
@@ -458,7 +457,6 @@ const removeBtn = document.querySelector('#delete-all');
 
 
 removeBtn.addEventListener('click', ()=> {
-    console.log('ff');
     pending.querySelectorAll('.todo-container').forEach(n => n.remove());
     completed.querySelectorAll('.todo-container').forEach(n => n.remove());
     localStorage.clear();
@@ -468,7 +466,6 @@ removeBtn.addEventListener('click', ()=> {
 // THIS WILL REMOVE THE TODO ELEMENT
 function removeElm(elem){
     elem.parentElement.parentElement.remove(); 
-    // console.log(elem.parentElement.parentElement.id);
     localStorage.removeItem(elem.parentElement.parentElement.id);
     changeSavedColor();
 }
@@ -493,14 +490,12 @@ function changeStatus(elem) {
         pending.appendChild(elem.parentElement.parentElement);
         elem.style.color = 'black';
 
-
         let cache = localStorage.getItem(storageKey);
         cache = JSON.parse(cache);
         cache[2] = 0;
 
         localStorage.setItem(storageKey, JSON.stringify(cache));
     }
-
     changeSavedColor();
 }
 
@@ -523,7 +518,6 @@ const saveContent = document.querySelector('.content');
 // TO UPDATE THE DATA REGULARLY
 function getContent(){
     for (let i = 0; i < todoContain.length; i++) {
-
         let dateInfo = todoContain[i].children[0].textContent;
         let contentInfo = todoContain[i].children[1].textContent;
         let statusContent = JSON.parse(localStorage.getItem(todoContain[i].id))[2];
@@ -627,8 +621,7 @@ for(let i = 0; i < Object.entries(localStorage).length; i++) {
         let dataCache = JSON.parse(Object.entries(localStorage)[i][1])[0];
         let contentCache = JSON.parse(Object.entries(localStorage)[i][1])[1];
         let statusCache = JSON.parse(Object.entries(localStorage)[i][1])[2];
-
-        // console.log(elemId);
+            
         renderTodos(elemId, dataCache, contentCache, statusCache);
     }
 }
