@@ -1,5 +1,3 @@
-
-
 *{
     margin:0;
     padding:0;
@@ -92,7 +90,8 @@
 
 .calender-header .iconify {
     font-size: 1.5rem;
-}
+} 
+
 /* =========== clock styles ============== */
 
 
@@ -101,7 +100,6 @@
     align-items: center;
     justify-content: space-between;
     width:250px;
-    /* border:1px solid black; */
     margin-top: 60px;
 }
 
@@ -135,7 +133,7 @@
 
 .header-icon {
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.15s;
 }
 
 .header-icon .iconify {
@@ -144,7 +142,7 @@
     
 }
 
-#create:hover {
+#save:hover {
     color:rgb(16, 172, 16);
 }
 
