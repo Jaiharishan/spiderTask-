@@ -1,6 +1,4 @@
 // CODING CALENDER
-
-// localStorage.clear();
 let months = ['January', 'Feburary', 'March', 'April', 'May', 'June'
         ,'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -109,22 +107,23 @@ function renderCalender(nav) {
 
 }
 
+// THE RENDERING THE INITIAL CALENDER
 renderCalender(nav);
 
-// FUNCTION TO MOVE TO PREVIOUS AND NEXT MONTH
 
+// FUNCTION TO MOVE TO PREVIOUS AND NEXT MONTH
 function leftNav() {
     nav--;
     calender.innerHTML = '';
     renderCalender(nav);
 }
 
+
 function rightNav() {
     nav++;
     calender.innerHTML = '';
     renderCalender(nav);
 }
-
 
 
 // SETTING CURRENT TIME IN THE CLOCK
@@ -156,13 +155,7 @@ function setTime() {
 }
 
 setTime();
-setInterval(setTime, 500);
-
-
-const deleteIcon = document.getElementById('delete');
-
-
-// creating todo-containers 
+setInterval(setTime, 1000);
 
 const todoWrapper = document.getElementById('w2');
 
@@ -178,7 +171,7 @@ else {
 }
 
 
-
+// FUNCTION GENREATE A NEW SCHEDULE
 function createToDo(elem) { 
     num = num + 1;
     let id = 'todo' + num;
@@ -215,6 +208,15 @@ function createToDo(elem) {
     todoContent.setAttribute('contenteditable', 'true');
     todoContent.textContent = "write something...";
 
+
+    // AN EVENT LISTENRE TO REMOVE PLACEHOLDER ONLY ONCE AND TO CHANGE SAVE ELEM COLOR
+    todoContent.addEventListener('click', ()=> {
+        todoContent.textContent = '';
+    }, {once:true})
+
+    todoContent.addEventListener('click', changeSavedColor)
+
+
     // SETTING THE CONTENT INTO THE LIST WHICH WILL BE A PART OF LOCAL STORAGE
     infoList.push(todoContent.textContent);
 
@@ -242,24 +244,28 @@ function createToDo(elem) {
 
     todoIcons.appendChild(spanIcon);
 
+    // ADDING THE INFO INTO LOCAL STORAGE
     localStorage.setItem(id, JSON.stringify(infoList));
-    console.log(localStorage);
 
-    // getContent();
+    // AS WE HAVE CREATED A NEW TODO WE HAVE NOT SAVED IT SO
+    changeSavedColor();
 }
 
 
-// DELETING TODO ELEMENT
+const deleteIcon = document.getElementById('delete');
 
+
+// DELETING TODO ELEMENTS
 function removeElm(elem){
     elem.parentElement.parentElement.remove(); 
-    console.log(elem.parentElement.parentElement.id);
     localStorage.removeItem(elem.parentElement.parentElement.id);
 
+    // THIS CHANGES THE SAVED DETAILS SO WE CHANGE THE COLOR
+    changeSavedColor();
 }
 
-// FUNCTION TO RECREATE TODOS USING LOCAL STORAGE INFO
 
+// FUNCTION TO RECREATE TODOS USING LOCAL STORAGE INFO
 function cacheToDo(elem_id, date, info) { 
     // TODO CONTAINER
     let todoContainer = document.createElement('div');
@@ -285,6 +291,15 @@ function cacheToDo(elem_id, date, info) {
     todoContent.setAttribute('contenteditable', 'true');
     todoContent.textContent = info;
 
+
+    // AN EVENT LISTENRE TO REMOVE PLACEHOLDER ONLY ONCE AND TO CHANGE SAVE ELEM COLOR
+    todoContent.addEventListener('click', ()=> {
+        todoContent.textContent = '';
+    }, {once:true})
+
+    todoContent.addEventListener('click', changeSavedColor)
+
+
     // ICONS
     let todoIcons = document.createElement('div');
     todoIcons.setAttribute('class', 'icons flex');
@@ -307,79 +322,62 @@ function cacheToDo(elem_id, date, info) {
     todoContainer.appendChild(todoIcons);
 
     todoIcons.appendChild(spanIcon);
-    }
-
-
-// I NEED TO CREATE A FUNCTION TO GET THE CONTENT IN SETINTERVA OF TIME
-//  TO ENSURE THAT ALL THE CONTENT IS UPDATED TO THE LOCAL STORAGE
-
-
-const todoContain = document.getElementsByClassName('todo-container');
-function getContent(){
-
-    // console.log(todoContain.length);
-    if (todoContain.length > 0) {
-        for (let i = 0; i < todoContain.length; i++) {
-
-            let infoArray = []
-            
-            let dateInfo = todoContain[i].children[0].textContent;
-            infoArray.push(dateInfo);
-            
-            let contentInfo = todoContain[i].children[1].textContent;
-            infoArray.push(contentInfo);
-            
-            // console.log(infoArray);
-            localStorage.setItem(todoContain[i].id, JSON.stringify(infoArray));
-        }
-    }
-    
-    
 }
 
-getContent();
 
-setInterval(getContent, 100);
+// ================ SAVE BTN =============
+
+// ADDING THE CHANGES TO SAVE BTN
+const saveAll = document.querySelector('#save');
+
+// THE TEXT CONTENT OF SAVE
+const saveContent = document.querySelector('.content');
+saveAll.addEventListener('click', getContent);
 
 
-console.log(Object.entries(localStorage));
+// TO CHANGE THE COLOR OF THE SAVED BACK TO BLACK
+function changeSavedColor(){
+    saveAll.style.color = 'black';
+    saveContent.textContent = 'save';
+}
+ 
+const todoContain = document.getElementsByClassName('todo-container');
+
+
+// THIS FUNCTION WILL GET THE CONTENT OF THE SCHEDULE WHEN WE CLICK SAVE BTN
+function getContent(){
+    for (let i = 0; i < todoContain.length; i++) {
+        let infoArray = []
+        let dateInfo = todoContain[i].children[0].textContent;
+        infoArray.push(dateInfo);
+        let contentInfo = todoContain[i].children[1].textContent;
+        infoArray.push(contentInfo);
+        localStorage.setItem(todoContain[i].id, JSON.stringify(infoArray));
+    }
+    saveAll.style.color = 'rgb(18, 190, 18)';
+    saveContent.textContent = 'saved';
+}
+
+
 
 // RENDERING ALL PREVOUSLY STORED DATA AFTER REFERESHING IF EXISTS
 for (let i = 0; i < Object.entries(localStorage).length; i++){
-    
     let elemId = Object.entries(localStorage)[i][0];
-    // console.log(JSON.parse(Object.entries(localStorage)[i][1]));
     if (elemId != 'num') {
         let dateCache = JSON.parse(Object.entries(localStorage)[i][1])[0];
-        
         let contentCache = JSON.parse(Object.entries(localStorage)[i][1])[1];
-
         cacheToDo(elemId, dateCache, contentCache);
     }
 }
 
+
 // REMOVING ALL ELEMENTS WHEN CLICKING REMOVE ALL
 // WE REMOVE ALL TODOCOTAINERS
-
 function removeAll() {
     todoWrapper.querySelectorAll('.todo-container').forEach(n => n.remove());
     localStorage.clear();
 }
 
+
 const deleteAllBtn = document.getElementById('delete-all');
 deleteAllBtn.setAttribute('onclick', 'removeAll()');
-
-
-function createNew() {
-    num++;
-    let newId = 'todo' + num;
-    let newDate = '6';
-    let newInfo = 'write something...';
-    cacheToDo(newId, newDate, newInfo);
-    localStorage.setItem(newId, JSON.stringify([newDate, newInfo]));
-}
-
-const createNewBtn = document.getElementById('create');
-createNewBtn.setAttribute('onclick', 'createNew()');
-
-// localStorage.clear();
